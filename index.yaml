@@ -2271,6 +2271,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/identity-management-1.13.0/identity-management-1.13.0.tgz
     version: 1.13.0
+  identity-provider:
+  - apiVersion: v1
+    appVersion: 1.13.0
+    created: "2025-12-15T12:31:00.54579285Z"
+    description: A Helm Chart for TIBCO Platform Control Plane -- Identity Provider
+    digest: d29da57e5fcf131c87e3c0f7bce6e7ca23a11c3e2c5e047fe7e03fd7f5d1e1fe
+    name: identity-provider
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/identity-provider-1.13.0/identity-provider-1.13.0.tgz
+    version: 1.13.0
   istio-crd:
   - apiVersion: v1
     appVersion: 1.21.2
@@ -13833,4 +13843,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:30:04.696647333Z"
+generated: "2025-12-15T12:31:00.546574364Z"
