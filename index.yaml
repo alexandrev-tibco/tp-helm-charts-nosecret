@@ -13415,4 +13415,14 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.3.136/tp-dp-monitor-agent-1.3.136.tgz
     version: 1.3.136
-generated: "2025-12-15T12:03:27.374999153Z"
+  user-subscriptions:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:04:11.716829726Z"
+    description: A Helm chart for -- User Subscriptions
+    digest: b7360ab0ccf56749e5a2e5d3bb869c60ae8e63c2c384fd836a536278454d9b36
+    name: user-subscriptions
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
+    version: 1.13.1
+generated: "2025-12-15T12:04:11.718352517Z"
