@@ -3448,6 +3448,16 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/opentelemetry-collector-0.101.2/opentelemetry-collector-0.101.2.tgz
     version: 0.101.2
+  orchestrator:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:12:33.963280028Z"
+    description: A Helm chart for -- Orchestrator
+    digest: 4f1ccce02ce612726892c74f61c531f01cf1989168bdd1e63773218822e563b8
+    name: orchestrator
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/orchestrator-1.13.0/orchestrator-1.13.0.tgz
+    version: 1.13.0
   otel-collector:
   - apiVersion: v2
     appVersion: 0.119.0
@@ -13545,4 +13555,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:11:14.780180026Z"
+generated: "2025-12-15T12:12:33.965217036Z"
