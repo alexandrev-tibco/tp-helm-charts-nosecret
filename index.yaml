@@ -370,6 +370,34 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/bwprovisioner-1.3.13/bwprovisioner-1.3.13.tgz
     version: 1.3.13
+  common:
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 2.23.0
+    created: "2025-12-15T12:21:20.618802001Z"
+    description: A Library Helm Chart for grouping common logic between bitnami charts.
+      This chart is not deployable by itself.
+    digest: 6fbde5d4251a207ca487be0349b772f4c9beeb7996c82cebd9c138f5cd17596c
+    home: https://bitnami.com
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common
+    - helper
+    - template
+    - function
+    - bitnami
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: common
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/common
+    type: library
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/common-2.23.0/common-2.23.0.tgz
+    version: 2.23.0
   compositions:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13681,4 +13709,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:20:10.904699163Z"
+generated: "2025-12-15T12:21:20.619777869Z"
