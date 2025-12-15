@@ -6150,6 +6150,15 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/providers-1.2.0/providers-1.2.0.tgz
     version: 1.2.0
+  router-operator:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:10:25.436832058Z"
+    digest: 8b9bc73b3e66b5716a605e9aaabd3bdfd23c4f3b4464b0aa88bf6a07c4193f36
+    name: router-operator
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/router-operator-1.13.0/router-operator-1.13.0.tgz
+    version: 1.13.0
   tibco-cp-addon-eventprocessing:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13524,4 +13533,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:09:29.728550815Z"
+generated: "2025-12-15T12:10:25.437498666Z"
