@@ -3410,6 +3410,17 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/opentelemetry-collector-0.101.2/opentelemetry-collector-0.101.2.tgz
     version: 0.101.2
+  otel-collector:
+  - apiVersion: v2
+    appVersion: 0.119.0
+    created: "2025-12-15T12:05:45.040101081Z"
+    description: OpenTelemetry Collector Helm chart for Kubernetes
+    digest: 1d121552d3ad09cd1639c9d267c19bbfb8fca373232754eb05843674dbe4d69a
+    name: otel-collector
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/otel-collector-0.116.5/otel-collector-0.116.5.tgz
+    version: 0.116.5
   platform-addon-eventprocessing:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13436,4 +13447,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:05:01.00105677Z"
+generated: "2025-12-15T12:05:45.04077371Z"
