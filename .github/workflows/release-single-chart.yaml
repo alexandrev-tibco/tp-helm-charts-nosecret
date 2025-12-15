@@ -72,6 +72,7 @@ jobs:
             fi
             charts_input="${CHART_NAME}:${CHART_VERSION}"
           fi
+          charts_input="$(echo "$charts_input" | tr ';' '\n')"
 
           chart_map_file="chart-map.txt"
           : > "$chart_map_file"
