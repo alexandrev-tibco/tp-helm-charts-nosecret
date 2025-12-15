@@ -82,6 +82,16 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/artifactmanager-1.3.4/artifactmanager-1.3.4.tgz
     version: 1.3.4
+  be-webserver:
+  - apiVersion: v2
+    appVersion: 1.12.0
+    created: "2025-12-15T12:18:14.890426478Z"
+    description: TIBCO Platform Control Plane - BE - WebServer
+    digest: 353400b29dec89d7379d123fd2d4c6192080e4fcc221357402299465a7707c5c
+    name: be-webserver
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/be-webserver-1.12.2/be-webserver-1.12.2.tgz
+    version: 1.12.2
   bw-recipes:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13647,4 +13657,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:17:31.004499232Z"
+generated: "2025-12-15T12:18:14.891236284Z"
