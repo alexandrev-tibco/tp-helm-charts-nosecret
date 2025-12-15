@@ -11681,6 +11681,14 @@ entries:
     version: 1.4.20
   tp-cp-o11y:
   - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:07:17.913716637Z"
+    digest: 14f42cb081c859da7e3d3505abc15956a6ca152908ba5e83c9e2f9d0333397d9
+    name: tp-cp-o11y
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-o11y-1.13.13/tp-cp-o11y-1.13.13.tgz
+    version: 1.13.13
+  - apiVersion: v2
     appVersion: 1.8.0
     created: "2025-06-23T15:46:51.513455877Z"
     dependencies:
@@ -13475,4 +13483,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:06:28.720152497Z"
+generated: "2025-12-15T12:07:17.914548736Z"
