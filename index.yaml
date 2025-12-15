@@ -2221,6 +2221,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/hybrid-proxy-1.13.0/hybrid-proxy-1.13.0.tgz
     version: 1.13.0
+  identity-management:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:24:46.421788314Z"
+    description: A Helm Chart for TIBCO Platform Control Plane -- Identity Management
+    digest: 096074de2451725b77a2f2015f694c56050c4a3db3ce12ba3949be09a0a8070d
+    name: identity-management
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/identity-management-1.13.0/identity-management-1.13.0.tgz
+    version: 1.13.0
   istio-crd:
   - apiVersion: v1
     appVersion: 1.21.2
@@ -13747,4 +13757,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:23:56.983856031Z"
+generated: "2025-12-15T12:24:46.422577884Z"
