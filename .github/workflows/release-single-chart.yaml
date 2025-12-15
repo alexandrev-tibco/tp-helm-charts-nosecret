@@ -14,9 +14,8 @@ on:
         description: Helm chart version to release
         required: false
       charts:
-        description: Multiline list of chart releases (format: name:version per line). Overrides chart_name/chart_version when set.
+        description: Multiline list of chart releases
         required: false
-        default: ""
 
 jobs:
   release:
