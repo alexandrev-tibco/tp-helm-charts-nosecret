@@ -1878,6 +1878,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/fileserver-1.13.0/fileserver-1.13.0.tgz
     version: 1.13.0
+  flogo-utilities:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:08:45.83142696Z"
+    description: Flogo buildtype, connectors and VSCode extension
+    digest: db07e08e0a97985c60a87f9150c4043ae11ea5102d1e441070e285c2b78101a4
+    name: flogo-utilities
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/flogo-utilities-1.13.0/flogo-utilities-1.13.0.tgz
+    version: 1.13.0
   flogoprovisioner:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13496,4 +13506,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:08:01.865909036Z"
+generated: "2025-12-15T12:08:45.832170303Z"
