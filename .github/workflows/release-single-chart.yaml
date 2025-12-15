@@ -145,6 +145,8 @@ jobs:
         run: |
           set -euo pipefail
           release_name="${CHART_NAME}-${CHART_VERSION}"
+          asset="temp-release/${CHART_NAME}-${CHART_VERSION}.tgz"
+
           for i in {1..12}; do
             if gh release view "$release_name" >/dev/null 2>&1; then
               echo "Release $release_name is available."
@@ -153,8 +155,10 @@ jobs:
             echo "Waiting for release $release_name to become available (attempt $i)..."
             sleep 5
           done
-          echo "Release $release_name not available after waiting." >&2
-          exit 1
+
+          echo "Release $release_name not available after waiting; creating it now."
+          gh release create "$release_name" "$asset" --title "$release_name" --notes "Automated release" --latest=false
+          echo "Release $release_name created."
 
       - name: Update Helm repo index
         run: |
