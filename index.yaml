@@ -8467,6 +8467,44 @@ entries:
     version: 1.3.18
   tp-cp-core:
   - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:40:02.128610755Z"
+    dependencies:
+    - condition: web-server.enabled
+      name: web-server
+      repository: ""
+      version: 1.13.*
+    - condition: orchestrator.enabled
+      name: orchestrator
+      repository: ""
+      version: 1.13.*
+    - condition: user-subscriptions.enabled
+      name: user-subscriptions
+      repository: ""
+      version: 1.13.*
+    - condition: cronjobs.enabled
+      name: cronjobs
+      repository: ""
+      version: 1.13.*
+    - condition: identity-management.enabled
+      name: identity-management
+      repository: ""
+      version: 1.13.*
+    - condition: identity-provider.enabled
+      name: identity-provider
+      repository: ""
+      version: 1.13.*
+    - condition: pengine.enabled
+      name: pengine
+      repository: ""
+      version: 1.13.*
+    description: A Helm chart for -- tp-cp-core
+    digest: 588ef5a0f0eed3028a7e425f914e92276ce645947c01e3bdf2e2353fc9d1e5e5
+    name: tp-cp-core
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-core-1.13.5/tp-cp-core-1.13.5.tgz
+    version: 1.13.5
+  - apiVersion: v2
     appVersion: 1.8.0
     created: "2025-06-23T11:16:43.148818413Z"
     dependencies:
@@ -14008,4 +14046,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:39:12.381376117Z"
+generated: "2025-12-15T12:40:02.129453503Z"
