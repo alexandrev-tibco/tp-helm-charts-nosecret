@@ -206,7 +206,7 @@ spec:
       {{- end }}
       {{ if .Values.global.cp.containerRegistry.secret }}
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
       {{- end }}
   volumeClaimTemplates:
     - metadata:

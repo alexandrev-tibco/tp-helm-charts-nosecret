@@ -103,7 +103,7 @@ spec:
         kubernetes.io/os: linux
       terminationGracePeriodSeconds: 10
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }}
+        - name: aws-registry
       containers:
       - name: {{ include "tp-dp-monitor-agent.consts.appName" . }}
         image: {{ include "tp-dp-monitor-agent.image.registry" .}}{{"/"}}{{ include "tp-dp-monitor-agent.image.repository" .}}{{"/"}}tel-monitor-agent:{{ include "tp-dp-monitor-agent.generated.buildNumber" . }}

@@ -33,7 +33,7 @@ spec:
         networking.platform.tibco.com/tea: enable
     spec:
       imagePullSecrets:
-      - name: {{ .Values.global.cp.containerRegistry.secret }}
+      - name: aws-registry
       {{- if .Values.global.cp.resources.serviceaccount.serviceAccountName }}
       serviceAccountName: {{ .Values.global.cp.resources.serviceaccount.serviceAccountName }}
       {{- end }}

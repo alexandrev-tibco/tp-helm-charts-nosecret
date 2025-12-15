@@ -77,7 +77,7 @@ spec:
             - name: logs
               mountPath: /tmp/logs
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
       volumes:
         - name: logs
           emptyDir: {}
@@ -147,7 +147,7 @@ spec:
             - name: CP_DOMAIN
               value: {{ include "tibcohub.cp.domain" . }}
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
       volumes:
         - name: logs
           emptyDir: {}

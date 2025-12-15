@@ -54,7 +54,7 @@ spec:
         {{- toYaml .Values.query.podSecurityContext | nindent 8 }}
       serviceAccountName: {{ template "jaeger.query.serviceAccountName" . }}
       imagePullSecrets:
-      - name: {{ .Values.global.cp.containerRegistry.secret }}
+      - name: aws-registry
       containers:
       - name: {{ template "jaeger.query.name" . }}
         securityContext:

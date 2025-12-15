@@ -46,7 +46,7 @@ spec:
       securityContext:
         {{- toYaml .Values.allInOne.podSecurityContext | nindent 8 }}
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }}
+        - name: aws-registry
       containers:
         - env:
           {{- if .Values.allInOne.extraEnv }}

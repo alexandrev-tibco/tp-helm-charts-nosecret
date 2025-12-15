@@ -82,7 +82,7 @@ spec:
               mountPath: /etc/ssl/certs/
         {{- end }}
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
       volumes:
         - name: logs
           emptyDir: {}
@@ -166,7 +166,7 @@ spec:
           securityContext:
             readOnlyRootFilesystem: true
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
       volumes:
         - name: logs
           emptyDir: {}

@@ -195,4 +195,4 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       imagePullSecrets:
-        - name: {{ .Values.global.cp.containerRegistry.secret }} {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}
+        - name: aws-registry {{/* optional imagePullSecret for private repo. no op if secret does not exist */}}

@@ -52,7 +52,7 @@ spec:
         {{- toYaml .Values.collector.podSecurityContext | nindent 8 }}
       serviceAccountName: {{ template "jaeger.collector.serviceAccountName" . }}
       imagePullSecrets:
-      - name: {{ .Values.global.cp.containerRegistry.secret }}
+      - name: aws-registry
       {{- if .Values.collector.initContainers }}
       initContainers:
         {{- toYaml .Values.collector.initContainers | nindent 8 }}
