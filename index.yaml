@@ -333,6 +333,20 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/bwprovisioner-1.3.13/bwprovisioner-1.3.13.tgz
     version: 1.3.13
+  configs:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: configs
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2025-12-15T12:02:38.095685766Z"
+    description: TIBCO Platform Control Plane crossplane provider configs
+    digest: c57d2570081831b93fcab92183b98929fb86e5c651d6796e58671599cbad30a7
+    name: configs
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/configs-1.2.0/configs-1.2.0.tgz
+    version: 1.2.0
   dp-bw-adapter:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13386,4 +13400,4 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.3.136/tp-dp-monitor-agent-1.3.136.tgz
     version: 1.3.136
-generated: "2025-12-15T12:01:49.462209115Z"
+generated: "2025-12-15T12:02:38.096565373Z"
