@@ -245,31 +245,10 @@ jobs:
             --owner "${{ github.repository_owner }}" \
             --git-repo "${{ github.event.repository.name }}" \
             --token "$CR_TOKEN" \
-            --release-name-template "{{ .Name }}-{{ .Version }}"
-
-          pushd gh-pages-worktree >/dev/null
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add index.yaml
-          chart_list=$(awk -F'|' '{print $1"-"$2}' "$chart_map_path" | paste -sd',' -)
-          git commit -m "Update index.yaml with ${chart_list}" || echo "No changes to commit"
-          git push origin HEAD:gh-pages
-          popd >/dev/null
-
-          INDEX_HASH=$(sha256sum gh-pages-worktree/index.yaml | awk '{print $1}')
-          git worktree remove gh-pages-worktree
+            --release-name-template "{{ .Name }}-{{ .Version }}" \
+            --push \
+            --packages-with-index \
+            --pages-branch gh-pages \
+            --pages-index-path index.yaml
 
           rm -rf temp-release
-
-          REPO_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/index.yaml"
-          echo "Waiting for GitHub Pages to publish updated index.yaml..."
-          for i in {1..30}; do
-            REMOTE_HASH=$(curl -sL "$REPO_URL" | sha256sum | awk '{print $1}')
-            if [[ "$REMOTE_HASH" == "$INDEX_HASH" ]]; then
-              echo "GitHub Pages has published the updated index.yaml"
-              break
-            fi
-            sleep 5
-          done
-
-          helm repo update
