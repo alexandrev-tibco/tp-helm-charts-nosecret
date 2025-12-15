@@ -1996,6 +1996,22 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/flogo-utilities-1.13.0/flogo-utilities-1.13.0.tgz
     version: 1.13.0
+  flogo-webserver:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: flogo-webserver
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:26:40.984183334Z"
+    description: Flogo webserver
+    digest: 474de0fbc65a775e7a10422bfd42e45d2f6fd00cd4bdf8b855ae444c090c26b5
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: flogo-webserver
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/flogo-webserver-1.13.0/flogo-webserver-1.13.0.tgz
+    version: 1.13.0
   flogoprovisioner:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13767,4 +13783,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:25:46.702534232Z"
+generated: "2025-12-15T12:26:40.984898944Z"
