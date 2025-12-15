@@ -12980,6 +12980,18 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-cp-servicemesh-recipes-1.3.5/tp-cp-servicemesh-recipes-1.3.5.tgz
     version: 1.3.5
+  tp-cp-subscription:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:23:06.655311312Z"
+    description: A Helm chart for provision subscription on TIBCO Platform Control
+      Plane
+    digest: 9cfb3dca67ec64b8bd603e25add46c791d910c763a7ca738fa2c4ee30f58d2d1
+    name: tp-cp-subscription
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-subscription-1.13.0/tp-cp-subscription-1.13.0.tgz
+    version: 1.13.0
   tp-cp-tibcohub-contrib:
   - apiVersion: v2
     appVersion: 1.12.0
@@ -13719,4 +13731,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:22:17.868637337Z"
+generated: "2025-12-15T12:23:06.656125947Z"
