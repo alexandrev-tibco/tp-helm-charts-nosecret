@@ -6971,6 +6971,27 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tibco-developer-hub-1.3.18/tibco-developer-hub-1.3.18.tgz
     version: 1.3.18
+  tibcohub-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: tibcohub-recipes
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:15:08.469239902Z"
+    description: TIBCO Developer Hub Data Plane Recipes
+    digest: a6329cab5a0b73728bbeab503642ac6df8a3901636e1a50e34dc5812ebbe7fa0
+    home: https://github.com/tibco/tp-dev-hub.git
+    keywords:
+    - tibco-platform
+    - control-plane
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO CIC Compute Dev Team
+    name: tibcohub-recipes
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tibcohub-recipes-1.13.7/tibcohub-recipes-1.13.7.tgz
+    version: 1.13.7
   tp-cp-alertmanager:
   - apiVersion: v2
     appVersion: 1.8.0
@@ -13579,4 +13600,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:14:24.804233023Z"
+generated: "2025-12-15T12:15:08.470095534Z"
