@@ -2474,6 +2474,16 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/jaeger-0.72.19/jaeger-0.72.19.tgz
     version: 0.72.19
+  monitoring-service:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:22:17.867824776Z"
+    description: A Helm chart for -- Monitoring service
+    digest: f8b8b1031158420b6148446659dd43d8bf57d94bcf6ce8844484455f1b75c09c
+    name: monitoring-service
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/monitoring-service-1.13.479/monitoring-service-1.13.479.tgz
+    version: 1.13.479
   msg-ems-tp:
   - apiVersion: v2
     appVersion: 10.4.0-95
@@ -13709,4 +13719,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:21:20.619777869Z"
+generated: "2025-12-15T12:22:17.868637337Z"
