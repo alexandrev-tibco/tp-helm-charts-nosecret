@@ -7085,6 +7085,18 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-cp-alerts-service-1.7.3/tp-cp-alerts-service-1.7.3.tgz
     version: 1.7.3
+  tp-cp-auditsafe:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:11:14.779422608Z"
+    description: Platform AuditSafe chart
+    digest: 67a0483307389ee77d86a6cfcc4b04bdcca2fccb33a71fe212910e73c74a8dbf
+    keywords:
+    - auditsafe
+    name: tp-cp-auditsafe
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-auditsafe-1.13.6/tp-cp-auditsafe-1.13.6.tgz
+    version: 1.13.6
   tp-cp-bootstrap:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13533,4 +13545,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:10:25.437498666Z"
+generated: "2025-12-15T12:11:14.780180026Z"
