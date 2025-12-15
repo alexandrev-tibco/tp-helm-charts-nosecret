@@ -7149,6 +7149,17 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tibco-developer-hub-1.3.18/tibco-developer-hub-1.3.18.tgz
     version: 1.3.18
+  tibcohub-contrib:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:32:34.34236154Z"
+    description: A Helm chart for TIBCO Hub CP contribution
+    digest: 96cd9ff89c3dfe4b5490893d352819963c2c8bed1dd9e9574fef3215eb2689c8
+    name: tibcohub-contrib
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tibcohub-contrib-1.13.2/tibcohub-contrib-1.13.2.tgz
+    version: 1.13.2
   tibcohub-recipes:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13853,4 +13864,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:31:50.017971146Z"
+generated: "2025-12-15T12:32:34.343229305Z"
