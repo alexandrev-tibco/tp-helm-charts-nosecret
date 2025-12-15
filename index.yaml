@@ -109,6 +109,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/bw-recipes-1.13.0/bw-recipes-1.13.0.tgz
     version: 1.13.0
+  bw5ce-utilities:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:19:26.749865088Z"
+    description: TIBCO CIC Global Provider -- BW5CE Utilities
+    digest: b94a558903dad596e57888a965a21ea94a73a8fa2624dd46d7cd91b7b369b13c
+    name: bw5ce-utilities
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/bw5ce-utilities-1.13.0/bw5ce-utilities-1.13.0.tgz
+    version: 1.13.0
   bw5provisioner:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13657,4 +13667,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:18:14.891236284Z"
+generated: "2025-12-15T12:19:26.750658313Z"
