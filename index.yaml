@@ -13569,4 +13569,14 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:13:29.266753475Z"
+  web-server:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:14:24.803378794Z"
+    description: A Helm chart for -- WebServer
+    digest: 3b9d59bdea1b14e7588c4fff9082e8fe353253017a52596fa4ce354ce05f4344
+    name: web-server
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
+    version: 1.13.6
+generated: "2025-12-15T12:14:24.804233023Z"
