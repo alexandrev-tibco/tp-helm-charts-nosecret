@@ -13545,6 +13545,20 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.3.136/tp-dp-monitor-agent-1.3.136.tgz
     version: 1.3.136
+  tp-tibtunnel:
+  - apiVersion: v1
+    appVersion: 1.13.0
+    created: "2025-12-15T12:13:29.265870942Z"
+    description: A Helm chart for TIBCO Tibtunnel
+    digest: 443b8ad2dc6db5058b65bca6064855a32d5b0ea8ed8dffc4f890f7b55049e64e
+    keywords:
+    - tibtunnel
+    - data-plane
+    - hybrid-connectivity
+    name: tp-tibtunnel
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-tibtunnel-1.13.0/tp-tibtunnel-1.13.0.tgz
+    version: 1.13.0
   user-subscriptions:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13555,4 +13569,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/user-subscriptions-1.13.1/user-subscriptions-1.13.1.tgz
     version: 1.13.1
-generated: "2025-12-15T12:12:33.965217036Z"
+generated: "2025-12-15T12:13:29.266753475Z"
