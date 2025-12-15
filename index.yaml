@@ -1878,6 +1878,23 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/fileserver-1.13.0/fileserver-1.13.0.tgz
     version: 1.13.0
+  flogo-recipes:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: flogo-recipes
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:15:57.591241878Z"
+    description: Flogo data plane recipes
+    digest: 1b7fdbd6b419e41ea01bc5119272b394d9675c0e308689cc6c2fa4f56493ebbd
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: flogo-recipes
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/flogo-recipes-1.13.0/flogo-recipes-1.13.0.tgz
+    version: 1.13.0
   flogo-utilities:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13600,4 +13617,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:15:08.470095534Z"
+generated: "2025-12-15T12:15:57.592298578Z"
