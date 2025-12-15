@@ -109,6 +109,22 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/bw-recipes-1.13.0/bw-recipes-1.13.0.tgz
     version: 1.13.0
+  bw-webserver:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: bw-webserver
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:23:56.983008343Z"
+    description: BW webserver for TIBCO Platform
+    digest: 7917d6f4bc3f1191343b52c0e168a39086b19100e26c3f3e10977b83c59fc031
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: bw-webserver
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/bw-webserver-1.13.0/bw-webserver-1.13.0.tgz
+    version: 1.13.0
   bw5ce-utilities:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13731,4 +13747,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:23:06.656125947Z"
+generated: "2025-12-15T12:23:56.983856031Z"
