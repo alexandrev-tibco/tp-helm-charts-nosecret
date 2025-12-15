@@ -166,7 +166,7 @@ jobs:
             release_name="${name}-${version}"
             if gh release view "$release_name" >/dev/null 2>&1; then
               echo "Existing release $release_name found; deleting to allow override."
-              gh release delete "$release_name" --cleanup-tag --yes
+              gh release delete "$release_name" --cleanup-tag --yes || true
             fi
             git tag -d "$release_name" >/dev/null 2>&1 || true
           done
@@ -179,6 +179,16 @@ jobs:
           while IFS='|' read -r name version chart_dir; do
             cp ".cr-release-packages/${name}-${version}.tgz" temp-release/
           done < "$chart_map"
+
+          for package in temp-release/*.tgz; do
+            pkg_name=$(basename "$package" .tgz)
+            release_name="$pkg_name"
+            if gh release view "$release_name" >/dev/null 2>&1; then
+              echo "Deleting existing release $release_name to replace it."
+              gh release delete "$release_name" --cleanup-tag --yes || true
+              git tag -d "$release_name" >/dev/null 2>&1 || true
+            fi
+          done
 
           cr upload \
             --package-path temp-release \
