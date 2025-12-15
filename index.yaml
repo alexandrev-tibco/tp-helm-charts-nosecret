@@ -443,6 +443,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/configs-1.2.0/configs-1.2.0.tgz
     version: 1.2.0
+  cronjobs:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:25:46.700822644Z"
+    description: A Helm chart for -- Cron Jobs
+    digest: cc19923096e19bbd0acb7a967750a1394bff017e3d4ab24c1dd13f0caf86ef1c
+    name: cronjobs
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/cronjobs-1.13.0/cronjobs-1.13.0.tgz
+    version: 1.13.0
   dp-bw-adapter:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13757,4 +13767,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:24:46.422577884Z"
+generated: "2025-12-15T12:25:46.702534232Z"
