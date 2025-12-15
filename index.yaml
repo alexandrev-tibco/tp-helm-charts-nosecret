@@ -13600,6 +13600,19 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.3.136/tp-dp-monitor-agent-1.3.136.tgz
     version: 1.3.136
+  tp-provisioner-agent:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:17:31.003059146Z"
+    description: A Helm chart for TIBCO Provisioner Agent
+    digest: 6c881443242f78960ab9576b19a9dd6ecd509c528965cb1549104882221bf0e6
+    keywords:
+    - provisioner-agent
+    - data-plane
+    name: tp-provisioner-agent
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-provisioner-agent-1.13.0/tp-provisioner-agent-1.13.0.tgz
+    version: 1.13.0
   tp-tibtunnel:
   - apiVersion: v1
     appVersion: 1.13.0
@@ -13634,4 +13647,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:16:41.717209431Z"
+generated: "2025-12-15T12:17:31.004499232Z"
