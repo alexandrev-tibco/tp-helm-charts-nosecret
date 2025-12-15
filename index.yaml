@@ -3627,6 +3627,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/otel-collector-0.116.5/otel-collector-0.116.5.tgz
     version: 0.116.5
+  pengine:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:30:04.695202868Z"
+    description: A Helm Chart for TIBCO Platform Control Plane Permissions Engine
+    digest: 71a9070038b534b765b3544e30009cdba01c45b34640011c5710d2eb41047f58
+    name: pengine
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/pengine-1.13.0/pengine-1.13.0.tgz
+    version: 1.13.0
   platform-addon-eventprocessing:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13823,4 +13833,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:29:09.07552715Z"
+generated: "2025-12-15T12:30:04.696647333Z"
