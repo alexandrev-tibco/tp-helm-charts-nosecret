@@ -239,6 +239,13 @@ jobs:
           git fetch origin gh-pages
           git worktree add gh-pages-worktree origin/gh-pages
 
+          # Remove existing entries for charts being republished so they are re-added even with same version
+          while IFS='|' read -r name version chart_dir; do
+            if [[ -f gh-pages-worktree/index.yaml ]]; then
+              yq -i "del(.entries.\"${name}\")" gh-pages-worktree/index.yaml || true
+            fi
+          done < "$chart_map_path"
+
           cr index \
             --package-path temp-release \
             --index-path gh-pages-worktree/index.yaml \
