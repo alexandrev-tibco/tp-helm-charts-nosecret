@@ -443,6 +443,24 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/compositions-1.10.0/compositions-1.10.0.tgz
     version: 1.10.0
+  config:
+  - apiVersion: v1
+    appVersion: 1.9.0
+    created: "2025-12-15T12:33:29.765480739Z"
+    description: A Helm chart for TIBCO Dp Core infrastructure-- Config
+    digest: d3409a46b00eda641899bb291be79608dbd7cd203e0e12214783d673111064dd
+    home: https://github.com/tibco/cicinfra-cic2-core
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    keywords:
+    - config
+    - data-plane
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO CIC Compute Dev Team
+    name: config
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/config-1.9.0/config-1.9.0.tgz
+    version: 1.9.0
   configs:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13864,4 +13882,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:32:34.343229305Z"
+generated: "2025-12-15T12:33:29.766318448Z"
