@@ -10356,6 +10356,16 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-hawk-infra-querynode-1.13.15/tp-cp-hawk-infra-querynode-1.13.15.tgz
     version: 1.13.15
+  tp-cp-infra:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T12:27:45.591272717Z"
+    description: TIBCO Platform Control Plane Infra chart
+    digest: c1f3c65a216487419a3ae0f387aa4275715432146b2e0362560c9fd18aa4acbb
+    name: tp-cp-infra
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-infra-1.13.0/tp-cp-infra-1.13.0.tgz
+    version: 1.13.0
   tp-cp-infra-recipes:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13783,4 +13793,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-15T12:26:40.984898944Z"
+generated: "2025-12-15T12:27:45.592121768Z"
