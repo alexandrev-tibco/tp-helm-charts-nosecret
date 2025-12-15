@@ -9,10 +9,14 @@ on:
         default: main
       chart_name:
         description: Helm chart name (value from Chart.yaml)
-        required: true
+        required: false
       chart_version:
         description: Helm chart version to release
-        required: true
+        required: false
+      charts:
+        description: Multiline list of chart releases (format: name:version per line). Overrides chart_name/chart_version when set.
+        required: false
+        default: ""
 
 jobs:
   release:
@@ -26,6 +30,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CHART_NAME: ${{ inputs.chart_name }}
       CHART_VERSION: ${{ inputs.chart_version }}
+      CHARTS: ${{ inputs.charts }}
     steps:
       - name: Checkout target branch
         uses: actions/checkout@v4
@@ -55,84 +60,125 @@ jobs:
           sudo chmod +x /usr/local/bin/yq
           yq --version
 
-      - name: Locate chart directory
+      - name: Build chart list
         id: locate
         run: |
           set -euo pipefail
-          chart_dir=""
-          while IFS= read -r -d '' chart_file; do
-            chart_name=$(yq -r '.name' "$chart_file")
-            if [[ "$chart_name" == "$CHART_NAME" ]]; then
-              chart_dir=$(dirname "$chart_file")
-              break
-            fi
-          done < <(find charts -type f -name 'Chart.yaml' -print0)
 
-          if [[ -z "$chart_dir" ]]; then
-            echo "Unable to locate chart named $CHART_NAME" >&2
-            exit 1
+          charts_input="${CHARTS:-}"
+          if [[ -z "$charts_input" ]]; then
+            if [[ -z "${CHART_NAME:-}" || -z "${CHART_VERSION:-}" ]]; then
+              echo "Provide either charts input (name:version per line) or both chart_name and chart_version." >&2
+              exit 1
+            fi
+            charts_input="${CHART_NAME}:${CHART_VERSION}"
           fi
 
-          echo "chart_dir=$chart_dir" >> "$GITHUB_OUTPUT"
+          chart_map_file="chart-map.txt"
+          : > "$chart_map_file"
+
+          while IFS= read -r line; do
+            [[ -z "$line" ]] && continue
+            name="${line%%:*}"
+            version="${line#*:}"
+            if [[ -z "$name" || -z "$version" || "$name" == "$version" ]]; then
+              echo "Invalid chart entry '$line'. Expected format name:version" >&2
+              exit 1
+            fi
+
+            chart_dir=""
+            while IFS= read -r -d '' chart_file; do
+              chart_name=$(yq -r '.name' "$chart_file")
+              if [[ "$chart_name" == "$name" ]]; then
+                chart_dir=$(dirname "$chart_file")
+                break
+              fi
+            done < <(find charts -type f -name 'Chart.yaml' -print0)
+
+            if [[ -z "$chart_dir" ]]; then
+              echo "Unable to locate chart named $name" >&2
+              exit 1
+            fi
+
+            echo "${name}|${version}|${chart_dir}" >> "$chart_map_file"
+          done <<< "$charts_input"
+
+          chart_list=$(awk -F'|' '{print $1"-"$2}' "$chart_map_file" | paste -sd',' -)
+          echo "chart_map=$chart_map_file" >> "$GITHUB_OUTPUT"
+          echo "chart_list=$chart_list" >> "$GITHUB_OUTPUT"
 
       - name: Add required chart repositories
         run: |
           set -euo pipefail
-          chart_dir="${{ steps.locate.outputs.chart_dir }}"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
           helm repo add tibco-platform https://mpandav.github.io/tp-helm-charts/ --force-update
 
-          yq -r '.dependencies[]? | select(.repository != null) | "\(.alias // .name) \(.repository)"' "$chart_dir/Chart.yaml" \
-            | while read -r repo_name repo_url; do
-                if [[ "$repo_url" == file://* || "$repo_url" == unpacked || -z "$repo_url" ]]; then
-                  echo "Skipping local dependency: $repo_name ($repo_url)"
-                  continue
-                fi
-                if [[ "$repo_url" =~ ^https?:// ]]; then
-                  echo "Adding dependency repo $repo_name -> $repo_url"
-                  helm repo add "$repo_name" "$repo_url" --force-update
-                else
-                  echo "Unknown repository format for $repo_name: $repo_url"
-                fi
-              done
+          while IFS='|' read -r name version chart_dir; do
+            echo "Processing dependencies for $name in $chart_dir"
+            yq -r '.dependencies[]? | select(.repository != null) | "\(.alias // .name) \(.repository)"' "$chart_dir/Chart.yaml" \
+              | while read -r repo_name repo_url; do
+                  if [[ "$repo_url" == file://* || "$repo_url" == unpacked || -z "$repo_url" ]]; then
+                    echo "Skipping local dependency: $repo_name ($repo_url)"
+                    continue
+                  fi
+                  if [[ "$repo_url" =~ ^https?:// ]]; then
+                    echo "Adding dependency repo $repo_name -> $repo_url"
+                    helm repo add "$repo_name" "$repo_url" --force-update
+                  else
+                    echo "Unknown repository format for $repo_name: $repo_url"
+                  fi
+                done
+          done < "$chart_map"
 
           helm repo update
 
       - name: Update chart version
         run: |
           set -euo pipefail
-          chart_dir="${{ steps.locate.outputs.chart_dir }}"
-          yq -i ".version = strenv(CHART_VERSION)" "$chart_dir/Chart.yaml"
-          echo "Updated $chart_dir/Chart.yaml to version $CHART_VERSION"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
+          while IFS='|' read -r name version chart_dir; do
+            yq -i ".version = \"$version\"" "$chart_dir/Chart.yaml"
+            echo "Updated $chart_dir/Chart.yaml to version $version"
+          done < "$chart_map"
 
       - name: Build chart dependencies
         run: |
           set -euo pipefail
-          chart_dir="${{ steps.locate.outputs.chart_dir }}"
-          helm dependency build "$chart_dir"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
+          while IFS='|' read -r name version chart_dir; do
+            helm dependency build "$chart_dir"
+          done < "$chart_map"
 
       - name: Package chart
         run: |
           set -euo pipefail
-          chart_dir="${{ steps.locate.outputs.chart_dir }}"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
           mkdir -p .cr-release-packages
-          helm package "$chart_dir" --version "$CHART_VERSION" --destination .cr-release-packages
+          while IFS='|' read -r name version chart_dir; do
+            helm package "$chart_dir" --version "$version" --destination .cr-release-packages
+          done < "$chart_map"
 
       - name: Prepare release
         run: |
           set -euo pipefail
-          release_name="${CHART_NAME}-${CHART_VERSION}"
-          if gh release view "$release_name" >/dev/null 2>&1; then
-            echo "Existing release $release_name found; deleting to allow override."
-            gh release delete "$release_name" --cleanup-tag --yes
-          fi
-          git tag -d "$release_name" >/dev/null 2>&1 || true
+          chart_map="${{ steps.locate.outputs.chart_map }}"
+          while IFS='|' read -r name version chart_dir; do
+            release_name="${name}-${version}"
+            if gh release view "$release_name" >/dev/null 2>&1; then
+              echo "Existing release $release_name found; deleting to allow override."
+              gh release delete "$release_name" --cleanup-tag --yes
+            fi
+            git tag -d "$release_name" >/dev/null 2>&1 || true
+          done
 
       - name: Upload chart artifact
         run: |
           set -euo pipefail
-          release_name="${CHART_NAME}-${CHART_VERSION}"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
           mkdir -p temp-release
-          cp ".cr-release-packages/${CHART_NAME}-${CHART_VERSION}.tgz" temp-release/
+          while IFS='|' read -r name version chart_dir; do
+            cp ".cr-release-packages/${name}-${version}.tgz" temp-release/
+          done < "$chart_map"
 
           cr upload \
             --package-path temp-release \
@@ -144,25 +190,33 @@ jobs:
       - name: Verify release availability
         run: |
           set -euo pipefail
-          release_name="${CHART_NAME}-${CHART_VERSION}"
-          asset="temp-release/${CHART_NAME}-${CHART_VERSION}.tgz"
+          chart_map="${{ steps.locate.outputs.chart_map }}"
+          while IFS='|' read -r name version chart_dir; do
+            release_name="${name}-${version}"
+            asset="temp-release/${name}-${version}.tgz"
+            success=false
 
-          for i in {1..12}; do
-            if gh release view "$release_name" >/dev/null 2>&1; then
-              echo "Release $release_name is available."
-              exit 0
+            for i in {1..12}; do
+              if gh release view "$release_name" >/dev/null 2>&1; then
+                echo "Release $release_name is available."
+                success=true
+                break
+              fi
+              echo "Waiting for release $release_name to become available (attempt $i)..."
+              sleep 5
+            done
+
+            if [[ "$success" == false ]]; then
+              echo "Release $release_name not available after waiting; creating it now."
+              gh release create "$release_name" "$asset" --title "$release_name" --notes "Automated release" --latest=false
+              echo "Release $release_name created."
             fi
-            echo "Waiting for release $release_name to become available (attempt $i)..."
-            sleep 5
           done
-
-          echo "Release $release_name not available after waiting; creating it now."
-          gh release create "$release_name" "$asset" --title "$release_name" --notes "Automated release" --latest=false
-          echo "Release $release_name created."
 
       - name: Update Helm repo index
         run: |
           set -euo pipefail
+          chart_map="${{ steps.locate.outputs.chart_map }}"
           git fetch origin gh-pages
           git worktree add gh-pages-worktree origin/gh-pages
 
@@ -178,7 +232,8 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add index.yaml
-          git commit -m "Update index.yaml with ${CHART_NAME}-${CHART_VERSION}" || echo "No changes to commit"
+          chart_list=$(awk -F'|' '{print $1"-"$2}' "$chart_map" | paste -sd',' -)
+          git commit -m "Update index.yaml with ${chart_list}" || echo "No changes to commit"
           git push origin HEAD:gh-pages
           popd >/dev/null
 
