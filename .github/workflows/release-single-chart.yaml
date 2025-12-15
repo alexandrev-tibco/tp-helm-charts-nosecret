@@ -186,8 +186,9 @@ jobs:
             if gh release view "$release_name" >/dev/null 2>&1; then
               echo "Deleting existing release $release_name to replace it."
               gh release delete "$release_name" --cleanup-tag --yes || true
-              git tag -d "$release_name" >/dev/null 2>&1 || true
             fi
+            git push origin ":refs/tags/$release_name" >/dev/null 2>&1 || true
+            git tag -d "$release_name" >/dev/null 2>&1 || true
           done
 
           cr upload \
