@@ -189,6 +189,13 @@ jobs:
             fi
             git push origin ":refs/tags/$release_name" >/dev/null 2>&1 || true
             git tag -d "$release_name" >/dev/null 2>&1 || true
+            for i in {1..5}; do
+              if ! gh release view "$release_name" >/dev/null 2>&1; then
+                break
+              fi
+              echo "Waiting for $release_name deletion to propagate (attempt $i)..."
+              sleep 2
+            done
           done
 
           cr upload \
@@ -228,6 +235,7 @@ jobs:
         run: |
           set -euo pipefail
           chart_map="${{ steps.locate.outputs.chart_map }}"
+          chart_map_path="$(pwd)/$chart_map"
           git fetch origin gh-pages
           git worktree add gh-pages-worktree origin/gh-pages
 
@@ -243,7 +251,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add index.yaml
-          chart_list=$(awk -F'|' '{print $1"-"$2}' "$chart_map" | paste -sd',' -)
+          chart_list=$(awk -F'|' '{print $1"-"$2}' "$chart_map_path" | paste -sd',' -)
           git commit -m "Update index.yaml with ${chart_list}" || echo "No changes to commit"
           git push origin HEAD:gh-pages
           popd >/dev/null
