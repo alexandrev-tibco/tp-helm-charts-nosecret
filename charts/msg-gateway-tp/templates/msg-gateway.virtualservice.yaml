@@ -1,0 +1,115 @@
+#
+# Copyright (c) 2023-2025. Cloud Software Group, Inc.
+# This file is subject to the license terms contained
+# in the license file that is distributed with this file.
+#
+
+#
+# HELPER VARIABLE DEFINITIONS
+{{- $params := include "need.msg.gateway.params" . | fromYaml -}}
+{{- $basename := printf "%s" $params.msggw.basename  -}}
+{{- $svcname := $basename -}}
+{{- $cpHost := .Values.global.cp.cpHostname | default "sub.cp.platform.local" -}}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" .Values.gatewayName -}}
+#
+{{- if $params.enableIngress }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: "{{ $basename }}-vs"
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "msg-gateway.std.labels" $params | nindent 4 }}
+    app.kubernetes.io/component: msg-gateway-ingress
+spec:
+  hosts:
+    - "{{ $cpHost }}"
+    - "dp-{{ $params.dp.name }}.platform.local"
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ops/shell/toolset/
+          headers:
+            ":authority":
+              exact: "{{ $cpHost }}"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
+            port:
+              number: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ct/toolset/
+          headers:
+            ":authority":
+              exact: "dp-{{ $params.dp.name }}.platform.local"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
+            port:
+              number: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ct/restd/
+          headers:
+            ":authority":
+              exact: "dp-{{ $params.dp.name }}.platform.local"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
+            port:
+              number: 9014
+kind: Service
+apiVersion: v1
+metadata:
+  name: "{{ $svcname }}"
+  labels:
+    {{- include "msg-gateway.std.labels" $params | nindent 4 }}
+    app.kubernetes.io/component: msg-gateway-service
+    tib-msg-stsname: "{{ $svcname }}"
+spec:
+  ports:
+  - name: ops-shell
+    port: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
+    protocol: TCP
+  - name: restd
+    port: 9014
+    protocol: TCP
+  - name: rvmon
+    port: 7585
+    protocol: TCP
+  selector:
+    tib-msg-stsname: "{{ $svcname }}"
+
+---
+# Pending removal - deferred to 1.7.0 w/ Single prometheus
+# 1.5.0: Monitors BMDP scrape service
+kind: Service
+apiVersion: v1
+metadata:
+  name: "{{ $svcname }}-finops"
+  annotations:
+    {{ include "msg.gateway.mon.anno" $params | indent 4 }}
+  labels:
+    {{- include "msg-gateway.std.labels" $params | nindent 4 }}
+    {{ include "msg.gateway.mon.labels" $params | nindent 4 }}
+    app.kubernetes.io/component: msg-gateway-finops
+    tib-msg-stsname: "{{ $svcname }}"
+spec:
+  ports:
+  - name: ops-shell
+    port: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
+    protocol: TCP
+  selector:
+    tib-msg-stsname: "{{ $svcname }}"
+
+{{- end }}

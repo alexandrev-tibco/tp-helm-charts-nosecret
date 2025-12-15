@@ -35,7 +35,7 @@ spec:
       {{- end }}
       containers:
       - name: cp-proxy
-        image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:{{ .Values.image.tag }}
+        image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:1.0
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.securityContext }}
         securityContext:

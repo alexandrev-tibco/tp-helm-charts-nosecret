@@ -9,80 +9,78 @@
 {{- $params := include "need.msg.gateway.params" . | fromYaml -}}
 {{- $basename := printf "%s" $params.msggw.basename  -}}
 {{- $svcname := $basename -}}
+{{- $cpHost := .Values.global.cp.cpHostname | default "sub.cp.platform.local" -}}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
 #
-{{- if $params.enableIngress }}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+{{- if .Values.enableIngress }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
 metadata:
-  name: "{{ $basename }}-ops"
+  name: "{{ $basename }}-vs"
   namespace: {{ .Release.Namespace }}
-  annotations:
-    ingress.kubernetes.io/path-rewrite: '/tibco/agent/msg/ops/shell/toolset/(.*) /\1'
   labels:
     {{- include "msg-gateway.std.labels" $params | nindent 4 }}
     app.kubernetes.io/component: msg-gateway-ingress
 spec:
-  ingressClassName: "tibco-dp-{{ $params.dp.name }}"
-  rules:
-  - host: "{{ .Values.global.cp.cpHostname | default "sub.cp.platform.local" }}"
-    http:
-      paths:
-      - pathType: Prefix
-        path: /tibco/agent/msg/ops/shell/toolset/
-        backend:
-          service:
-            name: "{{ $svcname}}"
+  hosts:
+    - "{{ $cpHost }}"
+    - "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ops/shell/toolset/
+          headers:
+            ":authority":
+              exact: "{{ $cpHost }}"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
             port:
               number: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: "{{ $basename }}-api"
-  namespace: {{ .Release.Namespace }}
-  annotations:
-    ingress.kubernetes.io/path-rewrite: '/tibco/agent/msg/ct/toolset/(.*) /\1'
-  labels:
-    {{- include "msg-gateway.std.labels" $params | nindent 4 }}
-    app.kubernetes.io/component: msg-gateway-ingress
-spec:
-  ingressClassName: "tibco-dp-{{ $params.dp.name }}"
-  rules:
-  - host: "dp-{{ $params.dp.name }}.platform.local"
-    http:
-      paths:
-      - pathType: Prefix
-        path: /tibco/agent/msg/ct/toolset/
-        backend:
-          service:
-            name: "{{ $svcname}}"
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ct/toolset/
+          headers:
+            ":authority":
+              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
             port:
               number: {{ int $params.msggw.ports.gatewayApiPort | default 8376 }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: "{{ $basename }}-restd"
-  namespace: {{ .Release.Namespace }}
-  annotations:
-    ingress.kubernetes.io/path-rewrite: '/tibco/agent/msg/ct/restd/(.*) /\1'
-  labels:
-    {{- include "msg-gateway.std.labels" $params | nindent 4 }}
-    app.kubernetes.io/component: msg-gateway-ingress
-spec:
-  ingressClassName: "tibco-dp-{{ $params.dp.name }}"
-  rules:
-  - host: "dp-{{ $params.dp.name }}.platform.local"
-    http:
-      paths:
-      - pathType: Prefix
-        path: /tibco/agent/msg/ct/restd/
-        backend:
-          service:
-            name: "{{ $svcname}}"
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ct/restd/
+          headers:
+            ":authority":
+              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
             port:
-              # FIXME: Values setting
               number: 9014
+    - match:
+        - uri:
+            prefix: /tibco/agent/msg/ct/rvmon/
+          headers:
+            ":authority":
+              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: "{{ $svcname }}.{{ .Release.Namespace }}.svc.cluster.local"
+            port:
+              number: 7585
 ---
 kind: Service
 apiVersion: v1

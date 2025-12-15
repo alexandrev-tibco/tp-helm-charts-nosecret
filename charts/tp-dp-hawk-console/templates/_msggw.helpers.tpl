@@ -80,8 +80,8 @@ need.msg.gateway.params
 */}}
 {{ define "need.msg.gateway.params" }}
 {{- $dpParams := include "need.msg.dp.params" . | fromYaml -}}
-{{- $emsDefaultFullImage := printf "%s/%s/msg-ems-all:10.4.0-95" $dpParams.dp.registry $dpParams.dp.repository -}}
-{{- $gwDefaultFullImage := printf "%s/%s/msg-gateway-all:10.4.0-11" $dpParams.dp.registry $dpParams.dp.repository -}}
+{{- $emsDefaultFullImage := printf "%s/%s/msg-ems-all:1.0" $dpParams.dp.registry $dpParams.dp.repository -}}
+{{- $gwDefaultFullImage := printf "%s/%s/msg-gateway-all:1.0" $dpParams.dp.registry $dpParams.dp.repository -}}
 {{- $basename :=  .Values.msggw.basename | default "tp-msg-gateway" -}}
 #
 {{ include "need.msg.dp.params" . }}

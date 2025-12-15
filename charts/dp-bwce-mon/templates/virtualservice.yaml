@@ -1,0 +1,56 @@
+{{ if and .Values.enabled .Values.ingress.enabled -}}
+{{- $fullName := include "dp-bwce-mon.fullname" . -}}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/component: load-balancer
+    {{- include "dp-bwce-mon.labels" . | nindent 4 }}
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Values.global.cp.resources.serviceaccount.namespace }}
+    meta.helm.sh/release-name: {{ $fullName }}
+    ingress.kubernetes.io/path-rewrite: /tibco/agent/integration/{{ .Values.global.cp.instanceId }}/dp-bwce-mon/(.*) /\1
+    {{- with .Values.ingress.annotations }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  hosts:
+  {{- range .Values.ingress.hosts }}
+    {{- if .host }}
+    - {{ .host | quote }}
+    {{- else }}
+    - "dp-{{ $.Values.global.cp.dataplaneId }}.platform.local"
+    {{- end }}
+  {{- end }}
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    {{- if $.Values.ingress.hostsOverride -}}
+    {{- range .Values.ingress.hosts }}
+    {{- range .paths }}
+    - match:
+        - uri:
+            prefix: {{ .path }}
+      route:
+        - destination:
+            host: {{ $fullName }}.{{ $.Release.Namespace }}.svc.cluster.local
+            port:
+              number: {{ $.Values.service.port }}
+    {{- end }}
+    {{- end }}
+    {{- else}}
+    - match:
+        - uri:
+            prefix: /tibco/agent/integration/{{ $.Values.global.cp.instanceId }}/dp-bwce-mon/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: {{ $fullName }}.{{ $.Release.Namespace }}.svc.cluster.local
+            port:
+              number: {{ $.Values.service.port }}
+    {{- end }}
+{{- end }}

@@ -40,7 +40,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: tp-o11y-service
-          image: {{ include "o11y-service.image.registry" .}}{{"/"}}{{ include "o11y-service.image.repository" .}}{{"/"}}o11y-service:{{- .Values.global.o11yservice.image.tag | default (include "o11y-service.image.tag" .) }}
+          image: {{ include "o11y-service.image.registry" .}}{{"/"}}{{ include "o11y-service.image.repository" .}}{{"/"}}o11y-service:1.0
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.securityContext }}
           securityContext:
@@ -195,5 +195,5 @@ spec:
           configMap:
             name: {{ include "o11y-service.fullname" . }}
         - name: o11y-secrets
-          secret:
-            secretName: {{ include "o11y-service.fullname" . }}
+          configMap:
+            name: {{ include "o11y-service.fullname" . }}

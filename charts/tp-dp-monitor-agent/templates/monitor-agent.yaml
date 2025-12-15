@@ -106,7 +106,7 @@ spec:
         - name: aws-registry
       containers:
       - name: {{ include "tp-dp-monitor-agent.consts.appName" . }}
-        image: {{ include "tp-dp-monitor-agent.image.registry" .}}{{"/"}}{{ include "tp-dp-monitor-agent.image.repository" .}}{{"/"}}tel-monitor-agent:{{ include "tp-dp-monitor-agent.generated.buildNumber" . }}
+        image: {{ include "tp-dp-monitor-agent.image.registry" .}}{{"/"}}{{ include "tp-dp-monitor-agent.image.repository" .}}{{"/"}}tel-monitor-agent:1.0
         {{- if .Values.securityContext.monitorAgent }}
         securityContext:
           {{- toYaml .Values.securityContext.monitorAgent | nindent 10 }}

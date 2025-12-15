@@ -1,0 +1,46 @@
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "tp-provisioner-agent.consts.appName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+  {{- include "tp-provisioner-agent.shared.labels.standard" . | nindent 4 }}
+spec:
+  hosts:
+    - "dp-{{ .Values.global.tibco.dataPlaneId }}.platform.local" # allow host dp-dpId or host header dp-dpId. The caller is expected from Control plane.
+    - "cpdpproxy" # tibtunnel probes the provisioner agent via haproxy hence the host is the HAProxy service name.
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: /tibco/agent/infra/provisioner-agent/v1/infra/version
+      rewrite:
+        uri: /v1/infra/version
+      route:
+        - destination:
+            host: {{ include "tp-provisioner-agent.consts.appName" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /tibco/agent/infra/provisioner-agent/v1/releases/dp-configure-namespace/version
+      rewrite:
+        uri: /v1/releases/dp-configure-namespace/version
+      route:
+        - destination:
+            host: {{ include "tp-provisioner-agent.consts.appName" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /tibco/agent/infra/provisioner-agent/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: {{ include "tp-provisioner-agent.consts.appName" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80

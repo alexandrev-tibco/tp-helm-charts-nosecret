@@ -1,0 +1,40 @@
+{{ if .Values.ingress.enabled -}}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: o11y-prom-scraper
+  labels:
+    app.kubernetes.io/component: load-balancer
+    {{- include "o11y-service.labels" . | nindent 4 }}
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Values.global.cp.resources.serviceaccount.namespace }}
+    meta.helm.sh/release-name: {{ include "o11y-service.fullname" . }}
+    haproxy.org/cors-enable: "true"
+    haproxy.org/load-balance: leastconn
+    haproxy.org/src-ip-header: X-Real-IP
+    ingress.kubernetes.io/path-rewrite: /tibco/agent/o11y/{{ .Values.global.cp.dataplaneId }}/otlp/exporter/metrics/(.*) /\1
+spec:
+  hosts:
+  {{- range .Values.ingress.hosts }}
+    {{- if .host }}
+    - {{ .host | quote }}
+    {{- else }}
+    - "dp-{{ $.Values.global.cp.dataplaneId }}.platform.local"
+    {{- end }}
+  {{- end }}
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: /tibco/agent/o11y/{{ $.Values.global.cp.dataplaneId }}/otlp/exporter/metrics/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: otel-userapp-metrics.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 4320
+{{- end -}}

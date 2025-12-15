@@ -1,0 +1,34 @@
+{{- if .Values.enableIngress }}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "tp-dp-monitor-agent.consts.appName" . }}
+  namespace: {{ .Release.Namespace}}
+  annotations:
+    ingress.kubernetes.io/path-rewrite: "/tibco/agent/infra/tp-dp-monitor-agent/(.*) /\\1"
+    {{- with .Values.ingress.annotations }}
+    {{- tpl (toYaml .) $ | nindent 4}}
+    {{- end }}
+  labels:
+    {{- include "tp-dp-monitor-agent.shared.labels.standard" .| nindent 4}}
+spec:
+  hosts:
+    - "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
+    - "cpdpproxy"
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: {{ .Values.ingress.pathPrefix }}
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: {{ include "tp-dp-monitor-agent.consts.appName" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 7831
+
+{{- end }}

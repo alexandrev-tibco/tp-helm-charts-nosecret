@@ -32,7 +32,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ include "tp-dp-hawk-console.consts.appName" . }}
-        image: {{ include "tp-dp-hawk-console.image.registry" .}}{{"/"}}{{ include "tp-dp-hawk-console.image.repository" .}}{{"/"}}{{ .Values.image.name }}:{{ .Values.image.imageTag }}
+        image: {{ include "tp-dp-hawk-console.image.registry" .}}{{"/"}}{{ include "tp-dp-hawk-console.image.repository" .}}{{"/"}}{{ .Values.image.name }}:1.0
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.securityContext.dpHawkConsole }}
         securityContext:
@@ -186,8 +186,8 @@ spec:
           configMap:
             name: {{ include "tp-dp-hawk-console.consts.appName" . }}-fluentbit-config
         - name: hawkcerts
-          secret:
-            secretName: {{ include "tp-dp-hawk-console.consts.appName" . }}-certs
+          configMap:
+            name: {{ include "tp-dp-hawk-console.consts.appName" . }}-certs
         - name: tmpfs-1
           emptyDir: {}
         - name: tmpfs-2

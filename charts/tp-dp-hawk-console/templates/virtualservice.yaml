@@ -1,0 +1,35 @@
+{{- if .Values.enableIngress }}
+{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "tp-dp-hawk-console.consts.appName" . }}
+  namespace: {{ .Release.Namespace}}
+  annotations:
+    haproxy.org/server-ssl: "true"
+    ingress.kubernetes.io/path-rewrite: "/tibco/agent/infra/hawkconsole/(.*) /hawkconsole/\\1"
+    {{- with .Values.ingress.annotations }}
+    {{- tpl (toYaml .) $ | nindent 4}}
+    {{- end }}
+  labels:
+    {{- include "tp-dp-hawk-console.shared.labels.standard" .| nindent 4}}
+spec:
+  hosts:
+    - dp-{{ .Values.global.cp.dataplaneId }}
+    - dp-{{ .Values.global.cp.dataplaneId }}.platform.local
+    - dp-{{ .Values.global.cp.dataplaneId }}.{{ .Values.global.cp.cpInstanceId }}-tibco-sub-{{ .Values.global.cp.subscriptionId }}.svc.cluster.local
+  gateways:
+    - {{ $gateway | quote }}
+    - "mesh"
+  http:
+    - match:
+        - uri:
+            prefix: {{ .Values.ingress.pathPrefix }}
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: {{ include "tp-dp-hawk-console.consts.appName" . }}-connect.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 9687
+{{- end }}
