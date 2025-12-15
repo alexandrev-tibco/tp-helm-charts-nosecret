@@ -1821,6 +1821,23 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/dp-oauth2proxy-recipes-1.3.19/dp-oauth2proxy-recipes-1.3.19.tgz
     version: 1.3.19
+  fileserver:
+  - annotations:
+      app.helm.sh/component: control-plane
+      app.helm.sh/name: fileserver
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-15T11:59:59.833611347Z"
+    description: Integration fileserver
+    digest: 88e578ca77c9784938fb15e96a884d2588750ba2e2283a74cf3f33bb120ca109
+    keywords:
+    - tibco-platform
+    - control-plane
+    name: fileserver
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/fileserver-1.13.0/fileserver-1.13.0.tgz
+    version: 1.13.0
   flogoprovisioner:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13344,4 +13361,4 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-dp-monitor-agent-1.3.136/tp-dp-monitor-agent-1.3.136.tgz
     version: 1.3.136
-generated: "2025-12-15T11:59:15.916324597Z"
+generated: "2025-12-15T11:59:59.834294456Z"
