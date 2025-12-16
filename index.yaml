@@ -2507,6 +2507,18 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/msg-ems-tp-1.3.14/msg-ems-tp-1.3.14.tgz
     version: 1.3.14
+  msg-gateway-tp:
+  - apiVersion: v2
+    appVersion: 10.4.0-95
+    created: "2025-12-16T14:55:06.854567589Z"
+    description: A Helm chart for deploying msg-gateway in K8DPs
+    digest: 6d9ff0d1b6833d36bd34ff3fa600b5968f31564a42546538c6a40f206284b63f
+    keywords:
+    - tp-msg-gateway
+    name: msg-gateway-tp
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/msg-gateway-tp-1.13.15/msg-gateway-tp-1.13.15.tgz
+    version: 1.13.15
   msg-pulsar-tp:
   - apiVersion: v2
     appVersion: 3.0.2-42
@@ -13165,4 +13177,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-16T14:52:20.580042392Z"
+generated: "2025-12-16T14:55:06.855258927Z"
