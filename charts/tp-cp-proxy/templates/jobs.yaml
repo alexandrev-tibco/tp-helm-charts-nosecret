@@ -21,6 +21,8 @@ spec:
   template:
     metadata:
       name: client-credential-creation
+      annotations:
+        "sidecar.istio.io/inject": "false"
       labels:
         {{- include "tp-cp-proxy.shared.labels.standard" . | nindent 8 }}
         networking.platform.tibco.com/internet-web-egress: enable
@@ -112,6 +114,8 @@ spec:
   template:
     metadata:
       name: client-credential-secret-deletion
+      annotations:
+        "sidecar.istio.io/inject": "false"
       labels:
         {{- include "tp-cp-proxy.shared.labels.standard" . | nindent 8 }}
         networking.platform.tibco.com/internet-web-egress: enable
