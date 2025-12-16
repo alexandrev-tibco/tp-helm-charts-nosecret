@@ -30,9 +30,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- end }}
-      {{- if .Values.global.cp.resources.serviceaccount.serviceAccountName }}
-      serviceAccountName: {{ .Values.global.cp.resources.serviceaccount.serviceAccountName }}
-      {{- end }}
+      serviceAccountName: default
       containers:
       - name: cp-proxy
         image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:1.0
