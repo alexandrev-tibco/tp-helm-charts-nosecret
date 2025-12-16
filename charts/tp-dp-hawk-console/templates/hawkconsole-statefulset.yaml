@@ -18,6 +18,8 @@ spec:
     matchLabels:
       {{- include "tp-dp-hawk-console.shared.labels.selector" . | nindent 6 }}
   template:
+    annotations:
+      sidecar.istio.io/inject: "false"
     metadata:
       labels:
         {{- include "tp-dp-hawk-console.shared.labels.standard" . | nindent 8 }}

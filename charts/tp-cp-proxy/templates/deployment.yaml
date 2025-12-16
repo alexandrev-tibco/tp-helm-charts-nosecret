@@ -19,6 +19,8 @@ spec:
       {{- include "tp-cp-proxy.shared.labels.selector" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
       labels:
         {{- include "tp-cp-proxy.shared.labels.standard" . | nindent 8 }}
         networking.platform.tibco.com/internet-web-egress: enable

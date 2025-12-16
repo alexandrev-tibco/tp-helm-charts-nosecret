@@ -74,9 +74,9 @@ containers:
       {{- end }}
     envFrom:
     - configMapRef:
-        name: o11y-service-11y-config
-    - configMapRef:
         name: o11y-service
+    - configMapRef:
+        name: o11y-service-11y-secrets
     {{- . | toYaml | nindent 6 }}
     
     {{- if .Values.lifecycleHooks }}

@@ -25,6 +25,7 @@ spec:
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
+        sidecar.istio.io/inject: "false"
       {{- end }}
       labels:
         {{- include "bwadapter.selectorLabels" . | nindent 8 }}
@@ -50,7 +51,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext.bwadapter | nindent 12 }}
           {{- end }}
-          image: {{ include "bwadapter.image.registry" .}}{{"/"}}{{ include "bwadapter.image.repository" .}}{{"/"}}tp-bw-adapter:{{ .Values.global.bwadapter.image.tag }}
+          image: {{ include "bwadapter.image.registry" .}}{{"/"}}{{ include "bwadapter.image.repository" .}}{{"/"}}tp-bw-adapter:1.0
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           livenessProbe:
             httpGet:

@@ -28,6 +28,7 @@ spec:
         networking.platform.tibco.com/logServer-egress: enable
         networking.platform.tibco.com/internet-egress: enable
       annotations:
+        sidecar.istio.io/inject: "false"
         o11y-service.platform.tibco.com/auditsafe-index: {{ .Values.global.cp.resources.o11yv3.logsServer.config.proxy.auditSafe.elasticSearch.logIndex }}
     spec:
       terminationGracePeriodSeconds: 30
@@ -193,7 +194,7 @@ spec:
 {{- end }}
         - name: o11y-cfgs
           configMap:
-            name: {{ include "o11y-service.fullname" . }}-11y-config
+            name: {{ include "o11y-service.fullname" . }}
         - name: o11y-secrets
           configMap:
-            name: {{ include "o11y-service.fullname" . }}
+            name: {{ include "o11y-service.fullname" . }}-11y-secrets

@@ -42,6 +42,7 @@ spec:
 {{- end }}
         prometheus.io/port: "14269"
         prometheus.io/scrape: "true"
+        sidecar.istio.io/inject: "false"
     spec:
       securityContext:
         {{- toYaml .Values.allInOne.podSecurityContext | nindent 8 }}
