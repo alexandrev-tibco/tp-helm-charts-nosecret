@@ -35,7 +35,7 @@ spec:
       serviceAccountName: {{ .Values.global.cp.resources.serviceaccount.serviceAccountName }}
       containers:
         - name: post-install-job
-          image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:1.0
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.securityContext }}
           securityContext:
@@ -129,7 +129,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- end }}
-          image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: {{ include "tp-cp-proxy.image.registry" .}}{{"/"}}{{ include "tp-cp-proxy.image.repository" .}}{{"/"}}{{ .Values.image.name }}:1.0
           volumeMounts:
             - name: logs
               mountPath: /tmp/logs

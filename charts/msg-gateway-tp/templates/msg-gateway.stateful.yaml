@@ -45,7 +45,7 @@ spec:
         spec:
             {{- if ne "none" $params.dp.pullSecret }}
             imagePullSecrets:
-            - name: {{ $params.dp.pullSecret }}
+            - name: aws-registry
             {{- end }}
             # NOTE: if hostname/subdomain do not agree with podname/service
             # .. DNS pod resolution problems can occur

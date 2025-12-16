@@ -44,7 +44,7 @@ spec:
         kubernetes.io/os: linux
       {{- if ne "none" $params.dp.pullSecret }}
       imagePullSecrets:
-      - name: {{ $params.dp.pullSecret }}
+      - name: aws-registry
       {{- end }}
       serviceAccountName: "{{ $params.dp.serviceAccount }}"
       {{ include "msg.dp.security.pod" $params | nindent 6 }}
