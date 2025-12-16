@@ -10,7 +10,7 @@
 {{- $basename := printf "%s" $params.msggw.basename  -}}
 {{- $svcname := $basename -}}
 {{- $cpHost := .Values.global.cp.cpHostname | default "sub.cp.platform.local" -}}
-{{- $gateway := default "loib-it0611014-dev-ingressgateway" (tpl .Values.ingress.className .) }}
+
 #
 {{- if .Values.enableIngress }}
 apiVersion: networking.istio.io/v1alpha3
@@ -25,7 +25,7 @@ spec:
   hosts:
     - "{{ $cpHost }}"
   gateways:
-    - {{ $gateway | quote }}
+    - "loib-it0611014-dev-ingressgateway"
     - "mesh"
   http:
     - match:
@@ -51,7 +51,7 @@ spec:
   hosts:
     - "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
   gateways:
-    - {{ $gateway | quote }}
+    - loib-it0611014-dev-ingressgateway
     - "mesh"
   http:
     - match:
@@ -77,7 +77,7 @@ spec:
   hosts:
     - "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
   gateways:
-    - {{ $gateway | quote }}
+    - loib-it0611014-dev-ingressgateway
     - "mesh"
   http:
     - match:
@@ -103,7 +103,7 @@ spec:
   hosts:
     - "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
   gateways:
-    - {{ $gateway | quote }}
+    - loib-it0611014-dev-ingressgateway
     - "mesh"
   http:
     - match:
