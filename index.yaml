@@ -12060,6 +12060,19 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-cp-prometheus-1.8.9/tp-cp-prometheus-1.8.9.tgz
     version: 1.8.9
+  tp-cp-proxy:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-16T11:45:20.402998366Z"
+    description: A Helm chart for Control Plane Proxy
+    digest: a58e3be7b6d5aba11e766bfcf83463cb33f8534cd21709c5955bacc462850f44
+    keywords:
+    - cp-proxy
+    - data-plane
+    name: tp-cp-proxy
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-proxy-1.13.1/tp-cp-proxy-1.13.1.tgz
+    version: 1.13.1
   tp-cp-recipes:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13410,4 +13423,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-16T11:41:49.48129444Z"
+generated: "2025-12-16T11:45:20.404087037Z"
