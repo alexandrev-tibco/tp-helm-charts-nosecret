@@ -3093,6 +3093,16 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/on-premises-third-party-1.10.1/on-premises-third-party-1.10.1.tgz
     version: 1.10.1
+  opentelemetry-collector:
+  - apiVersion: v2
+    appVersion: 0.119.0
+    created: "2025-12-16T13:26:37.041409658Z"
+    description: OpenTelemetry Collector Helm chart for Kubernetes
+    digest: 0d4e8f3e58fffbaaebadc7cde1d11db7f39eb99c6901904c68d1daaff4411467
+    name: opentelemetry-collector
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/opentelemetry-collector-0.116.4/opentelemetry-collector-0.116.4.tgz
+    version: 0.116.4
   orchestrator:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13110,4 +13120,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-16T13:25:19.057990141Z"
+generated: "2025-12-16T13:26:37.042066645Z"
