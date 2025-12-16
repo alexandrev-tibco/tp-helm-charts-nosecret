@@ -32,9 +32,6 @@ spec:
     - match:
         - uri:
             prefix: /tibco/agent/msg/ops/shell/toolset/
-          headers:
-            ":authority":
-              exact: "{{ $cpHost }}"
       rewrite:
         uri: /
       route:
@@ -45,9 +42,6 @@ spec:
     - match:
         - uri:
             prefix: /tibco/agent/msg/ct/toolset/
-          headers:
-            ":authority":
-              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
       rewrite:
         uri: /
       route:
@@ -58,9 +52,6 @@ spec:
     - match:
         - uri:
             prefix: /tibco/agent/msg/ct/restd/
-          headers:
-            ":authority":
-              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
       rewrite:
         uri: /
       route:
@@ -71,9 +62,6 @@ spec:
     - match:
         - uri:
             prefix: /tibco/agent/msg/ct/rvmon/
-          headers:
-            ":authority":
-              exact: "dp-{{ .Values.global.cp.dataplaneId }}.platform.local"
       rewrite:
         uri: /
       route:
