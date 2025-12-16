@@ -41,6 +41,7 @@ spec:
               tib-msg-stsname: "{{ $stsname }}"
             name: {{ $stsname }}
             annotations:
+              sidecar.istio.io/inject: "false"
               rollme: {{ randAlphaNum 5 | quote }}
         spec:
             {{- if ne "none" $params.dp.pullSecret }}
