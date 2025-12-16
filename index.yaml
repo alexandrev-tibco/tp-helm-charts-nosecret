@@ -518,6 +518,21 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/crossplane-components-1.10.0/crossplane-components-1.10.0.tgz
     version: 1.10.0
+  dp-bw-adapter:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-16T10:35:52.831907974Z"
+    description: TIBCO Platform Bare-metal Dataplane Capabilty -- BW Adapter
+    digest: 7319c977ed693fb5515b9c16fb07e009f828721bb3492562695692e78ee5d7f7
+    home: https://github.com/tibco/tp-iapp-bw-adapter.git
+    icon: https://pbs.twimg.com/profile_images/1064638558110007296/K6HqaXwh_400x400.jpg
+    maintainers:
+    - email: compute-dev@tibco.com
+      name: TIBCO Platform Dev Team
+    name: dp-bw-adapter
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/dp-bw-adapter-1.13.3/dp-bw-adapter-1.13.3.tgz
+    version: 1.13.3
   dp-bw5ce-app:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13395,4 +13410,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-16T10:34:44.289565337Z"
+generated: "2025-12-16T10:35:52.832606884Z"
