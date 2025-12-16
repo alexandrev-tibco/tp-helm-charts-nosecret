@@ -13,6 +13,24 @@
 
 #
 {{- if .Values.enableIngress }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: dp-d50m97aal6jc73b7bnd0.platform.local
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: ClusterIP
+  selector:
+    app: loib-it0611014-dev-ingressgateway
+    istio: loib-it0611014-dev-ingressgateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: tls
+      port: 443
+      targetPort: 8443
+---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
