@@ -2254,6 +2254,27 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/istio-istiod-1.3.1/istio-istiod-1.3.1.tgz
     version: 1.3.1
+  jaeger:
+  - apiVersion: v2
+    appVersion: 1.66.0
+    created: "2025-12-16T13:27:00.913532593Z"
+    description: A Jaeger Helm chart for Kubernetes
+    digest: a374d0b2853dd1cfa79fd6a8b2800d2cbc65ad63f53185b61287fb9e0df4d481
+    home: https://jaegertracing.io
+    icon: https://camo.githubusercontent.com/afa87494e0753b4b1f5719a2f35aa5263859dffb/687474703a2f2f6a61656765722e72656164746865646f63732e696f2f656e2f6c61746573742f696d616765732f6a61656765722d766563746f722e737667
+    keywords:
+    - jaeger
+    - opentracing
+    - tracing
+    - instrumentation
+    kubeVersion: '>= 1.21-0'
+    name: jaeger
+    sources:
+    - https://hub.docker.com/u/jaegertracing/
+    type: application
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/jaeger-0.72.40/jaeger-0.72.40.tgz
+    version: 0.72.40
   monitoring-service:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -2661,6 +2682,16 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/msg-pulsar-tp-1.3.14/msg-pulsar-tp-1.3.14.tgz
     version: 1.3.14
+  o11yservice:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-16T13:27:01.084418318Z"
+    description: A helm chart for o11y service
+    digest: ed0af8599bf79faaab8fab34d78ecb750969e878a59de918937d5cd504e59f93
+    name: o11yservice
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/o11yservice-1.13.13/o11yservice-1.13.13.tgz
+    version: 1.13.13
   oauth2-proxy:
   - annotations:
       artifacthub.io/changes: |
@@ -11783,6 +11814,19 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-cp-prometheus-1.8.9/tp-cp-prometheus-1.8.9.tgz
     version: 1.8.9
+  tp-cp-proxy:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-16T13:27:01.468216349Z"
+    description: A Helm chart for Control Plane Proxy
+    digest: 06c96546e987b8556216ca5e1455c698a985277264b565a548b863ad13018ae9
+    keywords:
+    - cp-proxy
+    - data-plane
+    name: tp-cp-proxy
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-cp-proxy-1.13.1/tp-cp-proxy-1.13.1.tgz
+    version: 1.13.1
   tp-cp-recipes:
   - annotations:
       app.helm.sh/component: control-plane
@@ -13052,6 +13096,19 @@ entries:
     urls:
     - https://github.com/TIBCOSoftware/tp-helm-charts/releases/download/tp-cp-tibcohub-recipes-1.3.17/tp-cp-tibcohub-recipes-1.3.17.tgz
     version: 1.3.17
+  tp-dp-hawk-console:
+  - apiVersion: v2
+    appVersion: 1.13.0
+    created: "2025-12-16T13:27:01.663466035Z"
+    description: A Helm chart for deploying the tp-dp-hawk-console service
+    digest: b352c93f55c3e9ae3dccc7e2de9b568eee2cd0be75ca9cb6b19fd0c58e7ef031
+    keywords:
+    - hawk-console
+    - tp-msg-gateway
+    name: tp-dp-hawk-console
+    urls:
+    - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/tp-dp-hawk-console-1.13.15/tp-dp-hawk-console-1.13.15.tgz
+    version: 1.13.15
   tp-dp-license-file:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -13120,4 +13177,4 @@ entries:
     urls:
     - https://github.com/alexandrev-tibco/tp-helm-charts-nosecret/releases/download/web-server-1.13.6/web-server-1.13.6.tgz
     version: 1.13.6
-generated: "2025-12-16T13:26:37.042066645Z"
+generated: "2025-12-16T13:27:01.664182402Z"
