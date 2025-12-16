@@ -54,7 +54,7 @@ spec:
           - name: {{ include "jaeger.fullname" . }}-es-index-cleaner
             securityContext:
               {{- toYaml .Values.esIndexCleaner.securityContext | nindent 14 }}
-            image: {{ .Values.esIndexCleaner.image }}:{{- .Values.esIndexCleaner.tag | default (include "jaeger.image.tag" .) }}
+            image: {{ .Values.esIndexCleaner.image }}:1.0
             imagePullPolicy: {{ .Values.esIndexCleaner.pullPolicy }}
             args:
               - {{ .Values.esIndexCleaner.numberOfDays | quote }}

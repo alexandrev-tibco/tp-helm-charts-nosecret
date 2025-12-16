@@ -61,7 +61,7 @@ spec:
       - name: {{ template "jaeger.collector.name" . }}
         securityContext:
           {{- toYaml .Values.collector.securityContext | nindent 10 }}
-        image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-collector:{{- .Values.collector.tag | default (include "jaeger.image.tag" .) }}
+        image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-collector:1.0
         imagePullPolicy: {{ .Values.collector.pullPolicy }}
         args:
           {{ include "extra.cmdArgs" ( dict "cmdlineParams" .Values.collector.cmdlineParams ) | nindent 10  }}

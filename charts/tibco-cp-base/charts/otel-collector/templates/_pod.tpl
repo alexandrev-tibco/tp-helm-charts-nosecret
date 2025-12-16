@@ -42,7 +42,7 @@ containers:
     {{- if .Values.image.digest }}
     image: "{{ ternary "" (print (.Values.global).imageRegistry "/") (empty (.Values.global).imageRegistry) }}{{ .Values.image.repository }}@{{ .Values.image.digest }}"
     {{- else }}
-    image: "{{ include "otel-collector.image.registry" .}}{{"/"}}{{ include "otel-collector.image.repository" .}}{{"/"}}o11y-opentelemetry-collector-contrib:{{ .Values.image.tag | default .Chart.AppVersion }}"
+    image: "{{ include "otel-collector.image.registry" .}}{{"/"}}{{ include "otel-collector.image.repository" .}}{{"/"}}o11y-opentelemetry-collector-contrib:1.0"
     {{- end }}
     imagePullPolicy: {{ .Values.image.pullPolicy }}
 

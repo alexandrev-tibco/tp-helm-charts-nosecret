@@ -60,7 +60,7 @@ spec:
       - name: {{ template "jaeger.agent.name" . }}
         securityContext:
           {{- toYaml .Values.agent.securityContext | nindent 10 }}
-        image: {{ .Values.agent.image }}:{{- .Values.agent.tag | default (include "jaeger.image.tag" .) }}
+        image: {{ .Values.agent.image }}:1.0
         imagePullPolicy: {{ .Values.agent.pullPolicy }}
         args:
           {{ include "extra.cmdArgs" ( dict "cmdlineParams" .Values.agent.cmdlineParams ) | nindent 10  }}

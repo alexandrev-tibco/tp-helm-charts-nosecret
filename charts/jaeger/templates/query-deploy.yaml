@@ -59,7 +59,7 @@ spec:
       - name: {{ template "jaeger.query.name" . }}
         securityContext:
           {{- toYaml .Values.query.securityContext | nindent 10 }}
-        image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-query:{{- .Values.query.tag | default (include "jaeger.image.tag" .) }}
+        image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-query:1.0
         imagePullPolicy: {{ .Values.query.pullPolicy }}
         args:
           {{ include "extra.cmdArgs" ( dict "cmdlineParams" .Values.query.cmdlineParams ) | nindent 10  }}
@@ -192,7 +192,7 @@ spec:
       - name: {{ template "jaeger.agent.name" . }}-sidecar
         securityContext:
           {{- toYaml .Values.query.securityContext | nindent 10 }}
-        image: {{ .Values.agent.image }}:{{- include "jaeger.image.tag" . }}
+        image: {{ .Values.agent.image }}:1.0
         imagePullPolicy: {{ .Values.agent.pullPolicy }}
         args:
           {{- range $key, $value := .Values.agent.cmdlineParams }}

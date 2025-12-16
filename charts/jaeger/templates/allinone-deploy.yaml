@@ -68,7 +68,7 @@ spec:
         {{- with .Values.allInOne.envFrom }}
           envFrom: {{- toYaml . | nindent 12 }}
         {{- end }}
-          image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-all-in-one:{{- .Values.collector.tag | default (include "jaeger.image.tag" .) }}
+          image: {{ include "jaeger.image.registry" .}}{{"/"}}{{ include "jaeger.image.repository" .}}{{"/"}}o11y-jaeger-all-in-one:1.0
           imagePullPolicy: {{ .Values.allInOne.pullPolicy }}
           name: jaeger
           securityContext:

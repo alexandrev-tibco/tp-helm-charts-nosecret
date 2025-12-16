@@ -68,7 +68,7 @@ spec:
           - name: {{ include "jaeger.fullname" . }}-es-rollover
             securityContext:
               {{- toYaml .Values.esRollover.securityContext | nindent 14 }}
-            image: "{{ .Values.esRollover.image }}:{{- include "jaeger.image.tag" . }}"
+            image: "{{ .Values.esRollover.image }}:1.0
             imagePullPolicy: {{ .Values.esRollover.pullPolicy }}
             args:
               - rollover

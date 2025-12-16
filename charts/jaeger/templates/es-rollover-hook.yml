@@ -57,7 +57,7 @@ spec:
       containers:
         - name: {{ include "jaeger.fullname" . }}-es-rollover-init
           securityContext: {{- toYaml .Values.esRollover.securityContext | nindent 12 }}
-          image: "{{ .Values.esRollover.image }}:{{ .Values.esRollover.tag }}"
+          image: "{{ .Values.esRollover.image }}:1.0"
           imagePullPolicy: {{ .Values.esRollover.pullPolicy }}
           args:
             - init
