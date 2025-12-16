@@ -72,10 +72,13 @@ containers:
       {{- with .Values.extraEnvs }}
       {{- . | toYaml | nindent 6 }}
       {{- end }}
-    {{- with .Values.extraEnvsFrom }}
     envFrom:
+    - configMapRef:
+        name: o11y-service-11y-config
+    - configMapRef:
+        name: o11y-service
     {{- . | toYaml | nindent 6 }}
-    {{- end }}
+    
     {{- if .Values.lifecycleHooks }}
     lifecycle:
       {{- toYaml .Values.lifecycleHooks | nindent 6 }}
